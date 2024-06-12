@@ -76,15 +76,59 @@ The first five rows of our cleaned data frame looks as such:
 Next, we want to grap a better understanding of our data throughout visualizations that give us insights into different data distributions and relationships between different variables in our data set.
 
 ### Univariate Analysis
-1. Here we analyze the distri
+1. First we analyze the distributions of power outages across both climate and NERC regions.
 <iframe
   src="assets/number_of_power_outages_comparison.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
+We observe that the climate region with the greatest amount of power outages from January 2000 to July 2016 is the Northeast. Additionally, we also observe the top two regions most impacted by power outages are the WECC and RFC regions.
+
+2. Next I wanted to analyze the leading cause categories of power outages.
+<iframe
+  src="assets/cause_cat_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+The leading cause category is severe weather, with almost 50% of reported outage events in the US falling into that category.
+
+3. We also wanted to analyze the distribution of outage duration (min) across the 16 years the data has been recorded.
+<iframe
+  src="assets/outage_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+Here we notice that the vast majority of outages lasted less than 20,000 minutes. It is also important to note that the distribution of outages is skewed to the right, indicating the presence of many outliers. These outliers represent outages that lasted significantly longer than the rest of the distribution, highlighting instances of severe disruptions.
 
 ### Bivariate Analysis
+1. Here we compare the distribution of `'customers_affected'` to `'outage_duration'` using a scatterplot.  
+<iframe
+  src="assets/customer_outage.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+We observe that a shorter outage duration correlates to a smaller population of customers affected. Though there are outliers that demonstrate shorter outage events impacting upwards of 3 million customers.
+
+2. Next we wanted to observe the outage duration amongst every climate and NERC region.
+<iframe
+  src="assets/outage_comparison.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+We observe that 
+
+3. Additionally, we wanted to observe how outage events are distributed amongst cause categories for both `'climate_region'` and `'nerc_region'`.
+<iframe
+  src="assets/cause_comparison.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ### Interesting Aggregates
 
