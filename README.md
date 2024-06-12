@@ -2,7 +2,9 @@
 By Marija Vukic and Sadrac Santacruz Ibarra
 
 # Introduction
-Throughtout this project, we explore major power outage events in the US from January 2000 to July 2016, using a data set curated by [*Purdue University’s Laboratory for Advancing Sustainable Critical Infrastructure*](https://engineering.purdue.edu/LASCI/research-data/outages). The dataset tracks significant power outage events across the US in the span of 16 years, along with geographical, climatic, electricity consumption trends, and economic attributes of the states impacted by these outages. Throughout this project we clean our data, conduct exploratory analysis to grasp an understanding of the trends present in our data, perform hypothesis testing, and create a prediction model. Our project aims to explore the question, ***what are the most frequent causes of power outages in different climate regions of the United States?***
+Throughtout this project, we explore major power outage events in the US from January 2000 to July 2016, using a data set curated by [*Purdue University’s Laboratory for Advancing Sustainable Critical Infrastructure*](https://engineering.purdue.edu/LASCI/research-data/outages). The dataset tracks significant power outage events across the US in the span of 16 years, along with geographical, climatic, electricity consumption trends, and economic attributes of the states impacted by these outages. Throughout this project we clean our data, conduct exploratory analysis to grasp an understanding of the trends present in our data, perform hypothesis testing, and create a prediction model. 
+
+The NERC (North American Electric Reliability Corporation) is an organization with various regions that works to reduce the risk to the security and reliability of the North American bulk power system. Each NERC region is managed under its own division and covers a specific portion of the US. Notably, some NERC regions span multiple climate zones, presenting unique challenges in managing power outage events effectively. Our project aims to explore the question, ***what are the most frequent causes of power outages resulting in longer durations on average compared to other causes for each NERC region of the United States?*** 
 
 Our initial raw data frame consists of 1535 rows and 57 columns. Of these columns from our initial data frame, we kept 31 columns for the sake of our analysis as described below. 
 
@@ -45,6 +47,9 @@ Our initial raw data frame consists of 1535 rows and 57 columns. Of these column
 ## Data Cleaning
 In order to investigate our question, we begin by cleaning our data.
 
+Here are the first five rows of our raw data frame:
+![First Five Rows of Raw Data Frame](images/raw_df.png)
+
 1. After importing our data, we found there were multiple columns and rows we had to drop as a result of the way the data was originally formated. As a result we dropped the first row that contained metrics symbols and the `'variables'` column. 
 
 2. Next, we droped 25 columns that were irrelevant to our goals of data analysis. From there, we had 31 remaining columns, which included `'YEAR'`, `'MONTH'`, `'U.S._STATE'`, `'NERC.REGION'`, `'CLIMATE.REGION'`, `'OUTAGE.START.DATE'`, `'OUTAGE.START.TIME'`, `'OUTAGE.RESTORATION.DATE'`, `'OUTAGE.RESTORATION.TIME'`, `'CAUSE.CATEGORY'`, `'CAUSE.CATEGORY.DETAIL'`, `'OUTAGE.DURATION'`, `'CUSTOMERS.AFFECTED'`, `'RES.PRICE'`, `'COM.PRICE'`, `'IND.PRICE'`, `'TOTAL.PRICE'`, `'RES.SALES'`, `'COM.SALES'`, `'IND.SALES'`, `'TOTAL.SALES'`, `'RES.CUSTOMERS'`, `'COM.CUSTOMERS'`, `'IND.CUSTOMERS'`, `'TOTAL.CUSTOMERS'`, `'PC.REALGSP.STATE'`, `'PC.REALGSP.USA'`, `'PC.REALGSP.REL'`, `'PC.REALGSP.CHANGE'`, `'TOTAL.REALGSP'`, and `'POPULATION'`.
@@ -66,19 +71,18 @@ First we concactenated the data for both outage start and restoration dates and 
 
 The first five rows of our cleaned data frame looks as such:
 ![First Five Rows of Cleaned Outage Data Frame](images/first_rows_df.png)
-| U.S._STATE   | NERC.REGION   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   CUSTOMERS.AFFECTED | OUTAGE.START        |
-|:-------------|:--------------|:-------------------|------------------:|---------------------:|:--------------------|
-| Minnesota    | MRO           | severe weather     |              3060 |                70000 | 2011-07-01 17:00:00 |
-| Minnesota    | MRO           | intentional attack |                 1 |                  nan | 2014-05-11 18:38:00 |
-| Minnesota    | MRO           | severe weather     |              3000 |                70000 | 2010-10-26 20:00:00 |
-| Minnesota    | MRO           | severe weather     |              2550 |                68200 | 2012-06-19 04:30:00 |
-| Minnesota    | MRO           | severe weather     |              1740 |               250000 | 2015-07-18 02:00:00 |
-
 
 ## Exploratory Data Analysis
 Next, we want to grap a better understanding of our data throughout visualizations that give us insights into different data distributions and relationships between different variables in our data set.
 
 ### Univariate Analysis
+1. Here we analyze the distri
+<iframe
+  src="assets/number_of_power_outages_comparison.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 ### Bivariate Analysis
 
@@ -91,6 +95,10 @@ Next, we want to grap a better understanding of our data throughout visualizatio
 ## Missingness Dependency
 
 # Hypothesis Testing
+
+**Null Hypothesis** ${H}_{0}$ : Severe-weather-induced power outages do not exhibit longer durations on average compared to power outages caused by other factors.
+
+**Alternative Hypothesis** ${H}_{a}$ : Severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
 
 # Framing a Prediction Problem
 
