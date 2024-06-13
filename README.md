@@ -131,6 +131,31 @@ We observe that
 ></iframe>
 
 ### Interesting Aggregates
+1. We wanted to analyze how total amount of customers across various regions has changed from January 2000 to July 2016. First, we groupby `'climate_region'` and `'year'` to isolate each instance of customer count per climate region across the past 16 years. The data for customers across all industries is tracked on an annual, state-by-state basis, so first we find the sum of all customers throughout a year period. We then took the mean to account for the average of customers per state by year. The result is a data frame that appears as follows:
+
+![Aggregate Data Frame](images/df_sample.png)
+
+From there, we plotted our aggregate for `'total_customers'` as follows.
+
+<iframe
+  src="assets/customer_climate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We observe that the climate regions with the greatest customer growth across the US are the West and the Northeast, with many climate regions exhibiting a spike in customers around 2012.
+
+2. Next, we created a pivot table to summarize the average outage duration for power outages across different cause categories and NERC regions in the United States. Each row represents a NERC region, each column represents a cause category, and the values show the average outage duration in minutes. This provides insights into outage duration variability across regions and the impact of different causes on outage duration.
+
+![Pivot Table](images/pivot_table.png)
+
+<iframe
+  src="assets/heatmap.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 # Assessment of Missingness
 
@@ -140,9 +165,9 @@ We observe that
 
 # Hypothesis Testing
 
-**Null Hypothesis** ${H}_{0}$ : Severe-weather-induced power outages do not exhibit longer durations on average compared to power outages caused by other factors.
+**Null Hypothesis** : Severe-weather-induced power outages do not exhibit longer durations on average compared to power outages caused by other factors.
 
-**Alternative Hypothesis** ${H}_{a}$ : Severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
+**Alternative Hypothesis** : Severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
 
 # Framing a Prediction Problem
 
