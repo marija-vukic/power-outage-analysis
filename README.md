@@ -275,10 +275,13 @@ We included `'climate_region'` as certain regions are more susceptible to severe
 
 Using GridSearchCV, we performed hyperparameter tuning, resulting in the following optimal settings for the Gradient Boosting Regressor:
 
-(-)Criterion: 'friedman_mse'
-(-)Learning Rate: 0.1
-(-)Max Depth: 3
-(-)Min Samples Split: 2
+* Criterion: 'friedman_mse'
+
+* Learning Rate: 0.1
+
+* Max Depth: 3
+
+* Min Samples Split: 2
 
 We framed our model evaluation on Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R² metrics. The model achieved a cross-validated RMSE of 1956.58, indicating its ability to predict outage durations with moderate accuracy.
 
