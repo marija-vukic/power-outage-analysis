@@ -275,7 +275,7 @@ We included `'climate_region'` as certain regions are more susceptible to severe
 
 Using GridSearchCV, we performed hyperparameter tuning, resulting in the following optimal settings for the Gradient Boosting Regressor:
 
-* Criterion: 'friedman_mse'
+* Criterion: `'friedman_mse'`
 
 * Learning Rate: 0.1
 
