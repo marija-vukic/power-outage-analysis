@@ -76,7 +76,7 @@ The first five rows of our cleaned data frame looks as such:
 Next, we want to grap a better understanding of our data throughout visualizations that give us insights into different data distributions and relationships between different variables in our data set.
 
 ### Univariate Analysis
-1. First we analyze the distributions of power outages across both climate and NERC regions.
+1.First we analyze the distributions of power outages across both climate and NERC regions.
 <iframe
   src="assets/number_of_power_outages_comparison.html"
   width="800"
@@ -85,7 +85,7 @@ Next, we want to grap a better understanding of our data throughout visualizatio
 ></iframe>
 We observe that the climate region with the greatest amount of power outages from January 2000 to July 2016 is the Northeast. Additionally, we also observe the top two regions most impacted by power outages are the WECC and RFC regions.
 
-2. Next I wanted to analyze the leading cause categories of power outages.
+2.Next I wanted to analyze the leading cause categories of power outages.
 <iframe
   src="assets/cause_cat_dist.html"
   width="800"
@@ -94,7 +94,7 @@ We observe that the climate region with the greatest amount of power outages fro
 ></iframe>
 The leading cause category is severe weather, with almost 50% of reported outage events in the US falling into that category.
 
-3. We also wanted to analyze the distribution of outage duration (min) across the 16 years the data has been recorded.
+3.We also wanted to analyze the distribution of outage duration (min) across the 16 years the data has been recorded.
 <iframe
   src="assets/outage_dist.html"
   width="800"
@@ -104,7 +104,7 @@ The leading cause category is severe weather, with almost 50% of reported outage
 Here we notice that the vast majority of outages lasted less than 20,000 minutes. It is also important to note that the distribution of outages is skewed to the right, indicating the presence of many outliers. These outliers represent outages that lasted significantly longer than the rest of the distribution, highlighting instances of severe disruptions.
 
 ### Bivariate Analysis
-1. Here we compare the distribution of `'customers_affected'` to `'outage_duration'` using a scatterplot.  
+1.Here we compare the distribution of `'customers_affected'` to `'outage_duration'` using a scatterplot.  
 <iframe
   src="assets/customer_outage.html"
   width="800"
@@ -113,7 +113,7 @@ Here we notice that the vast majority of outages lasted less than 20,000 minutes
 ></iframe>
 We observe that a shorter outage duration correlates to a smaller population of customers affected. Though there are outliers that demonstrate shorter outage events impacting upwards of 3 million customers.
 
-2. Next we wanted to observe the outage duration amongst every climate and NERC region.
+2.Next we wanted to observe the outage duration amongst every climate and NERC region.
 <iframe
   src="assets/outage_comparison.html"
   width="800"
@@ -122,7 +122,7 @@ We observe that a shorter outage duration correlates to a smaller population of 
 ></iframe>
 We observe that 
 
-3. Additionally, we wanted to observe how outage events are distributed amongst cause categories for both `'climate_region'` and `'nerc_region'`.
+3.Additionally, we wanted to observe how outage events are distributed amongst cause categories for both `'climate_region'` and `'nerc_region'`.
 <iframe
   src="assets/cause_comparison.html"
   width="800"
@@ -131,7 +131,7 @@ We observe that
 ></iframe>
 
 ### Interesting Aggregates
-1. We wanted to analyze how total amount of customers across various regions has changed from January 2000 to July 2016. First, we groupby `'climate_region'` and `'year'` to isolate each instance of customer count per climate region across the past 16 years. The data for customers across all industries is tracked on an annual, state-by-state basis, so first we find the sum of all customers throughout a year period. We then took the mean to account for the average of customers per state by year. The result is a data frame that appears as follows:
+1.We wanted to analyze how total amount of customers across various regions has changed from January 2000 to July 2016. First, we groupby `'climate_region'` and `'year'` to isolate each instance of customer count per climate region across the past 16 years. The data for customers across all industries is tracked on an annual, state-by-state basis, so first we find the sum of all customers throughout a year period. We then took the mean to account for the average of customers per state by year. The result is a data frame that appears as follows:
 
 ![Aggregate Data Frame](images/df_sample.png)
 
@@ -146,7 +146,7 @@ From there, we plotted our aggregate for `'total_customers'` as follows.
 
 We observe that the climate regions with the greatest customer growth across the US are the West and the Northeast, with many climate regions exhibiting a spike in customers around 2012.
 
-2. Next, we created a pivot table to summarize the average outage duration for power outages across different cause categories and NERC regions in the United States. Each row represents a NERC region, each column represents a cause category, and the values show the average outage duration in minutes. This provides insights into outage duration variability across regions and the impact of different causes on outage duration.
+2.Next, we created a pivot table to summarize the average outage duration for power outages across different cause categories and NERC regions in the United States. Each row represents a NERC region, each column represents a cause category, and the values show the average outage duration in minutes. This provides insights into outage duration variability across regions and the impact of different causes on outage duration.
 
 ![Pivot Table](images/pivot_table.png)
 
