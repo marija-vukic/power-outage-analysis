@@ -157,17 +157,95 @@ We observe that the climate regions with the greatest customer growth across the
   frameborder="0"
 ></iframe>
 
+3.Finally, we also wanted to aggregate the average amount of `'customers_affected'` annually from January 2000 to July 2016 per `'nerc_region'`.
+
+<iframe
+  src="assets/affected.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 # Assessment of Missingness
+To assess for missingness dependency, we will be examining the `'customers_affected'` column of our data frame.
 
 ## NMAR Analysis
+We suspect that the `'outage_start_time'` column in our dataset is likely NMAR (Not Missing At Random). This suspicion arises from the data collection process. According to the article *Data on Major Power Outage Events in the Continental U.S.*, the `'outage_start_time'` is "reported by the corresponding Utility in the region". This implies that the missing data could be due to the utility not knowing or failing to accurately record the exact start time of the outage. 
+
+Additionally, when it comes to recording start time, factors that may cause missing data include:
+1. A utility company focusing more on fixing the outage as opposed to tracking the events start.
+2. Potential human error if a ultility company is not using adequate technology to track incidents.
+3. Incident related reasoning: When an outage is caused by severe weather or complex technical failures, utility companies might have uncertain or hard-to-determine start times. Utilities might not have precise data on when the outage began, particularly in widespread or escalating events.
+
+On the other hand, the `'outage_start_date'` is less likely to be NMAR because utilities have a broader time frame to report the date of an outage, making it more likely they can accurately record this information. Hence, we assume NMAR for `'outage_start_time'` due to its sensitivity and the potential for inaccuracies in recording the exact time.
+
+To consider `'outage_start_time'` as MAR (Missing At Random), utility companies would need to provide a more detailed description of their data collection methods and the accuracy of their incident recording. Additionally, we can conduct an analysis to see if the missingness of `'outage_start_time'` is dependent on factors such as `'nerc_region'` or specific utilities in certain regions, which might indicate a pattern or dependency.
 
 ## Missingness Dependency
+To assess for missingness dependency, we will be examining the `'customers_affected'` column of our data frame. We will test for dependecy using the `'us_state'` and `'nerc_region'` columns. We chose these columns as `'customers_affected'` might be dependent on columns related to geographical features. For example, certain each region or state may have varying data collection methods that could affect the availability of data relating to the `'customers_affected'` in an outage event. Therefore, we suspect that `'customers_affected'` is MAR (Missing At Random).
+
+### US State
+To start, we will be examining the `'us_state'` distribution.
+
+**Null Hypothesis:** The distribution of `'us_state'` is the same when `'customers_affected'` is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of `'us_state'` is different when `'customers_affected'` is missing vs not missing.
+
+<iframe
+  src="assets/state_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We found an observed TVD of 0.0111 and a p value of 0.112. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'us_state'` is the same when 'customers_affected' is missing vs not missing, indicating that the missingness of `'customers_affected'` is not dependent on `'us_state'`.
+
+<iframe
+  src="assets/state_tvd.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### NERC Region
+
+Then we will examine the `'nerc_region'` distribution.
+
+**Null Hypothesis:** The distribution of `'nerc_region'` is the same when `'customers_affected'` is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing.
+
+<iframe
+  src="assets/nerc_missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We found an observed TVD of 0.2738 and a p value of 0.0. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing., indicating that the missingness of `'customers_affected'` is dependent on `'nerc_region'`.
+
+<iframe
+  src="assets/nerc_tvd.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 # Hypothesis Testing
 
-**Null Hypothesis** : Severe-weather-induced power outages do not exhibit longer durations on average compared to power outages caused by other factors.
+**Null Hypothesis :** Severe-weather-induced power outages do not exhibit longer durations on average compared to power outages caused by other factors.
 
-**Alternative Hypothesis** : Severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
+**Alternative Hypothesis :** Severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
+
+**Test Statistic :** The test statistic we use is the *difference of means* between the average duration of power outage duration caused by severe weather and the average duration of power outage duration NOT caused by severe weather.
+
+We conducted a permutation test with 10,000 simulations of our difference of means in order to generate an empirical distribution of the test statisic under the null hypothesis. 
+
+We observed a significant difference in the average durations of power outages caused by severe weather compared to those caused by other factors. The observed difference in means between the two groups was approximately 2537.81 minutes. Given an alpha level of 0.05 and a p-value of 0.0, we reject the null hypothesis. This indicates that severe-weather-induced power outages exhibit longer durations on average compared to power outages caused by other factors.
+
+The plot below shows the observed difference against the empirical distribution of differences from the permutation tests.
+
+![Hypothesis Test](images/hypothesis.png)
 
 # Framing a Prediction Problem
 
