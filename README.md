@@ -138,7 +138,7 @@ We observe that
 From there, we plotted our aggregate for `'total_customers'` as follows.
 
 <iframe
-  src="assets/customer_climate.html"
+  src="assets/customer_growth.html"
   width="800"
   height="600"
   frameborder="0"
