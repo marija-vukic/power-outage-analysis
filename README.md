@@ -192,7 +192,7 @@ To start, we will be examining the `'us_state'` distribution.
 **Alternate Hypothesis:** The distribution of `'us_state'` is different when `'customers_affected'` is missing vs not missing.
 
 <iframe
-  src="assets/state_missingness.html"
+  src="assets/missingness_state.html"
   width="800"
   height="600"
   frameborder="0"
@@ -201,7 +201,7 @@ To start, we will be examining the `'us_state'` distribution.
 We found an observed TVD of 0.0111 and a p value of 0.112. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'us_state'` is the same when 'customers_affected' is missing vs not missing, indicating that the missingness of `'customers_affected'` is not dependent on `'us_state'`.
 
 <iframe
-  src="assets/state_tvd.html"
+  src="assets/tvd_state.html"
   width="800"
   height="600"
   frameborder="0"
@@ -216,7 +216,7 @@ Then we will examine the `'nerc_region'` distribution.
 **Alternate Hypothesis:** The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing.
 
 <iframe
-  src="assets/nerc_missingness.html"
+  src="assets/missingness_nerc.html"
   width="800"
   height="600"
   frameborder="0"
@@ -225,7 +225,7 @@ Then we will examine the `'nerc_region'` distribution.
 We found an observed TVD of 0.2738 and a p value of 0.0. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing., indicating that the missingness of `'customers_affected'` is dependent on `'nerc_region'`.
 
 <iframe
-  src="assets/nerc_tvd.html"
+  src="assets/tvd_nerc.html"
   width="800"
   height="600"
   frameborder="0"
