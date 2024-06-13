@@ -222,7 +222,7 @@ Then we will examine the `'nerc_region'` distribution.
   frameborder="0"
 ></iframe>
 
-We found an observed TVD of 0.2738 and a p value of 0.0. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing., indicating that the missingness of `'customers_affected'` is dependent on `'nerc_region'`.
+We found an observed TVD of 0.2738 and a p value of 0.0. The empirical distribution of the TVDs is shown below. At alpha=0.05, we fail to reject the null hypothesis. The distribution of `'nerc_region'` is different when `'customers_affected'` is missing vs not missing, indicating that the missingness of `'customers_affected'` is dependent on `'nerc_region'`.
 
 <iframe
   src="assets/tvd_nerc.html"
@@ -265,33 +265,35 @@ The target variable for prediction is `'outage_duration'`, representing the dura
 
 The model's performance was evaluated using several metrics, including Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R² (coefficient of determination). While the model achieved moderate performance, with an RMSE of approximately 2612 minutes, an MAE of about 1807 minutes, and an R² of 0.1878, there is still room for improvement.
 
-Overall, the model provides valuable insights into outage duration prediction based on `'nerc_region'`. However, further refinement and feature engineering may be necessary to enhance its accuracy and robustness, ultimately enabling more informed decision-making in power outage management and resource allocation.
+Overall, the model provides valuable insights into outage duration prediction based on `'nerc_region'`.
 
 # Final Model
 
-My final model aimed to predict the duration of power outages based on various features, including `'nerc_region'`, `'climate_region'`, `'anomaly_level'`, `'year'`, `'month'`, `'total_price'`, `'total_sales'`, `'total_customers'`, and `'urban'`. Using a Gradient Boosting Regressor, I achieved an R² of 0.577 on the test set, indicating moderate predictive performance.
+Our final model aims to improve upon my baseline model by predicting the duration of power outages based on various features, including `'nerc_region'`, `'climate_region'`, `'anomaly_level'`, `'year'`, `'month'`, `'total_price'`, `'total_sales'`, `'total_customers'`, and `'urban'`. Using a Gradient Boosting Regressor, I achieved an R² of 0.577 on the test set, indicating moderate predictive performance.
 
-I included CLIMATE.REGION as certain regions are more susceptible to severe weather, impacting outage durations. We incorporated the feature `'month'` to capture seasonal variations in outage patterns. `'total_price'` and `'total_sales'` represent economic factors affecting energy consumption, while `'total_customers'` adjusts for service density, accounting for potential variations in outage severity due to higher usage in densely populated areas.
+We included `'climate_region'` as certain regions are more susceptible to severe weather, impacting outage durations. Additionally, we incorporated the feature `'month'` to capture seasonal variations in outage patterns. `'total_price'` and `'total_sales'` represent economic factors affecting energy consumption, while `'total_customers'` adjusts for service density, accounting for potential variations in outage severity due to higher usage in densely populated areas.
 
-Hyperparameter tuning was performed using GridSearchCV, resulting in the following optimal settings for the Gradient Boosting Regressor:
+Using GridSearchCV, we performed hyperparameter tuning, resulting in the following optimal settings for the Gradient Boosting Regressor:
 
 (-)Criterion: 'friedman_mse'
 (-)Learning Rate: 0.1
 (-)Max Depth: 3
 (-)Min Samples Split: 2
 
-Model evaluation was based on Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R² metrics. The model achieved a cross-validated RMSE of 1956.58, indicating its ability to predict outage durations with moderate accuracy.
+We framed our model evaluation on Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R² metrics. The model achieved a cross-validated RMSE of 1956.58, indicating its ability to predict outage durations with moderate accuracy.
 
-Additionally, I conducted an analysis by NERC region to understand regional differences in outage durations. The model's predictions revealed varying probabilities of longer outages across different regions, providing valuable insights for outage management and resource allocation.
+Additionally, we conducted analysis by NERC region to understand regional differences in outage durations. The model's predictions revealed varying probabilities of longer outages across different regions, providing valuable insights for outage management and resource allocation.
 
-While the model performed reasonably well, there are opportunities for improvement. Further feature engineering, incorporating additional variables such as regional economic indicators and customer demographics, and exploring advanced modeling techniques could enhance predictive accuracy and provide more actionable insights for managing power outages effectively.
+While the model performed reasonably well, there are opportunities for improvement. We would need to further engineer more features, incorporating additional variables such as regional economic indicators and customer demographics, or to minimize the use of our current features. From there we can also explore other model approaches that would allow us to better reach our prediction goals.
 
 # Fairness Analysis
 
 To assess if the model's performance differs between Eastern and Western regions, we defined Group X as Eastern regions (RFC, SERC) and Group Y as Western regions (WECC). The evaluation metric chosen for this analysis is the Root Mean Squared Error (RMSE) of predicted outage durations.
 
-Null Hypothesis: The model's RMSE for Eastern and Western regions is approximately equal, and any observed differences are due to random chance.
-Alternative Hypothesis: The model's RMSE for Eastern regions is higher than for Western regions, suggesting potential unfairness.
+**Null Hypothesis:** The model's RMSE for Eastern and Western regions is approximately equal, and any observed differences are due to random chance.
+
+**Alternative Hypothesis:** The model's RMSE for Eastern regions is higher than for Western regions, suggesting potential unfairness.
+
 To test these hypotheses, we conducted a permutation test using the difference in RMSE between Group X and Group Y as the test statistic. We randomly shuffled the labels of Eastern and Western regions and recalculated the difference in RMSE for a large number of permutations (n = 1000).
 
 The observed difference in RMSE between Eastern and Western regions was -24.62. At a significance level of 0.05 and a p-value of 0.504, we fail to reject the null hypothesis. This suggests that there is insufficient evidence to conclude that the model's performance differs significantly between Eastern and Western regions.
